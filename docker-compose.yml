@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  postgres_tcg:
+    image: postgres
+    container_name: postgres_tcg
+    environment:
+      POSTGRES_USER: tcg_user
+      POSTGRES_PASSWORD: tcg_password
+      POSTGRES_DB: tcg_db
+    ports:
+      - "5433:5432"
+
+  rails_tcg:
+    build:
+      context: .
+    environment:
+      DATABASE_URL: postgres://tcg_user:tcg_password@postgres_tcg:5432/tcg_db
+    depends_on:
+      - postgres_tcg

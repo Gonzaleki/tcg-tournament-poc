@@ -1,0 +1,18 @@
+<%= form_with(model: @users,
+              url: users_path(@users),
+              method: :post,
+              class: "flex flex-col gap-6") do |form| %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :name, "Name", class: "font-semibold" %>
+    <%= form.text_field :name, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :name, "Email", class: "font-semibold" %>
+    <%= form.text_field :email, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :name, "Password", class: "font-semibold" %>
+    <%= form.password_field :password_digest, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <%= button_tag("Create", class: "p-2 rounded-md shadow-md") %>
+<% end %>
