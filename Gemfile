@@ -20,6 +20,7 @@ gem "jbuilder"
 # gem "redis", ">= 4.0.1"
 gem "pg", "~> 1.1"
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+gem 'pry-rails', '~> 0.3.4'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
