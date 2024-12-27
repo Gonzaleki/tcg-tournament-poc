@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Route to home#index if session exists
   constraints(SessionConstraint) do
-    root 'home#index', as: :authenticated_root
+    root "home#index", as: :authenticated_root
   end
 
   get "/login", to: "sessions#index"

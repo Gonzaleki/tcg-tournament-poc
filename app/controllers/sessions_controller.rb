@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to authenticated_root_path
     else
-      render json: { errors: ["Invalid email or password"] }, status: :unauthorized
+      render json: { errors: [ "Invalid email or password" ] }, status: :unauthorized
     end
   end
 end
