@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   end
 
   get "/login", to: "sessions#index"
-
   resources :users
   resources :sessions, only: [ :create, :destroy ]
-  resources :home, only: [ :index ]
+  resources :home
+  resources :leagues
 
   root to: redirect("/login"), as: :unauthenticated_root
 end

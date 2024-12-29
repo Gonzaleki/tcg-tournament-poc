@@ -1,3 +1,27 @@
-<div>
-  Home
-</div>
+<%= tag.div(class: "flex w-full flex-col") do %>
+  <%= tag.header(class: "flex justify-around w-full gap-2 my-6") do %>
+    <%= tag.p(class: "flex font-light") do %>
+      <%= current_user.email %>
+      <%= current_user.name %>
+    <% end %>
+    <%= link_to("Create new League", new_league_path) %>
+    <%= button_to("Logout", session_path(current_user), method: :delete) %>
+  <% end %>
+
+  <%= tag.main(class: "flex flex-col") do %>
+
+    <%= tag.div(class: "flex flex-col my-4") do %>
+      <%= tag.p(class: "font-bold text-lg") { "Current Leagues" } %>
+      <ul>
+        <% current_user.leagues.each do |league| %>
+          <li>
+            <%= link_to league_path(league), class: "font-light" do %>
+              <%= league.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+  <% end %>
+<% end %>

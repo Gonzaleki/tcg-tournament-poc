@@ -1,2 +1,1 @@
-css: pnpm build:css --watch
-js: pnpm build --watch
+css: bin/rails tailwindcss:watch

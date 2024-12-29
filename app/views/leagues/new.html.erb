@@ -1,0 +1,35 @@
+<%= form_with(model: @league,
+              url: leagues_path(@league),
+              method: :post,
+              class: "flex flex-col gap-6 w-96") do |form| %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :name, "Name", class: "font-semibold" %>
+    <%= form.text_field :name, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :size, "Size", class: "font-semibold" %>
+    <%= form.number_field :size, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :start_date, "Start Date", class: "font-semibold" %>
+    <%= form.date_field :start_date, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <%= tag.div(class: "flex flex-col text-sm") do %>
+    <%= form.label :end_date, "End Date", class: "font-semibold" %>
+    <%= form.date_field :end_date, required: true, class: "border border-gray-600 rounded-md p-2" %>
+  <% end %>
+  <% if @league.errors.any? %>
+    <%= tag.div(class: "text-red-600 font-light") do %>
+      <ul>
+        <% @league.errors.full_messages.each do |message| %>
+          <li class="text-red-600 font-light"><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <%= tag.div(clas: "flex gap-2 items-center") do %>
+    <%= link_to("Back", authenticated_root_path, class: "p-4 rounded-md shadow-md") %>
+    <%= button_tag("Create", class: "p-3.5 rounded-md shadow-md") %>
+  <% end %>
+<% end %>

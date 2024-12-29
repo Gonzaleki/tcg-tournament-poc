@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user, except: [:destroy]
+  before_action :redirect_if_authenticated, only: [:index]
   def index
   end
 
@@ -10,5 +12,10 @@ class SessionsController < ApplicationController
     else
       render json: { errors: [ "Invalid email or password" ] }, status: :unauthorized
     end
+  end
+
+  def destroy
+    session.delete(:user_id)
+    redirect_to unauthenticated_root_path
   end
 end

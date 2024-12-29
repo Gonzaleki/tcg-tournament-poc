@@ -1,18 +1,30 @@
 <%= form_with(model: @users,
               url: users_path(@users),
               method: :post,
-              class: "flex flex-col gap-6") do |form| %>
+              class: "flex flex-col gap-6 w-96") do |form| %>
   <%= tag.div(class: "flex flex-col text-sm") do %>
     <%= form.label :name, "Name", class: "font-semibold" %>
     <%= form.text_field :name, required: true, class: "border border-gray-600 rounded-md p-2" %>
   <% end %>
   <%= tag.div(class: "flex flex-col text-sm") do %>
-    <%= form.label :name, "Email", class: "font-semibold" %>
-    <%= form.text_field :email, required: true, class: "border border-gray-600 rounded-md p-2" %>
+    <%= form.label :email, "Email", class: "font-semibold" %>
+    <%= form.email_field :email, required: true, class: "border border-gray-600 rounded-md p-2" %>
   <% end %>
   <%= tag.div(class: "flex flex-col text-sm") do %>
     <%= form.label :password, "Password", class: "font-semibold" %>
     <%= form.password_field :password, required: true, class: "border border-gray-600 rounded-md p-2" %>
   <% end %>
-  <%= button_tag("Create", class: "p-2 rounded-md shadow-md") %>
+  <% if @user.errors.any? %>
+    <%= tag.div(class: "text-red-600 font-light") do %>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li class="text-red-600 font-light"><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <%= tag.div(clas: "flex gap-2 items-center") do %>
+    <%= link_to("Back", login_path, class: "p-4 rounded-md shadow-md") %>
+    <%= button_tag("Create", class: "p-3.5 rounded-md shadow-md") %>
+  <% end %>
 <% end %>
